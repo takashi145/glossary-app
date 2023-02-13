@@ -8,13 +8,16 @@
     </label>
     
     <ul class="mx-auto px-8 w-full lg:w-2/3 mt-12">
-      <h1 class="text-3xl"><%= @category.name %></h1>
-      <% @category.terms.each do |term| %>
+      <% @terms.each do |term| %>
         <li class="my-6">
           <div class="tooltip w-full" data-tip="click">
             <div class="collapse group text-start">
               <input type="checkbox" class="w-full" />
               <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
+                <div class="text-sm underline mb-1">
+                  Category:　<%= term.category.name %>
+                </div>
+
                 <%= term.name %>
               </div>
               
