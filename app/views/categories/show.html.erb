@@ -1,1 +1,10 @@
-<h1><%= @category.name %></h1>
+<h1 class="text-3xl"><%= @category.name %></h1>
+
+<ul class="m-3">
+  <% @category.terms.each do |term| %>
+    <li class="border-b">
+      <%= term.name %> <br />
+      <%= term.description %>
+    </li>
+  <% end %>
+</ul>

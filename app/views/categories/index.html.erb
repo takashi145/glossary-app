@@ -1,13 +1,31 @@
 <h1>カテゴリ一覧</h1>
 
-<ul>
+<ul class="m-8">
   <% @categories.each do |category| %>
-    <li>
-      <a href="<%= category_path(category) %>">
+    <li class="border-b p-3">
+      <a 
+        href="<%= category_path(category) %>" 
+        class="text-lg text-gray-600 hover:text-gray-800 hover:underline"
+      >
         <%= category.name %>
       </a>
 
-      <%= button_to "Delete", category_path(category), method: :delete %>
+      <div class="flex flex-row space-x-3">
+        <%=
+            link_to "Edit",
+            edit_category_path(category),
+            class: "text-blue-400 hvoer:text-blue-600"
+        %>
+
+        <%= 
+          button_to "Delete", 
+          category_path(category), 
+          method: :delete, 
+          class: "text-red-400 hover:text-red-600" 
+        %>
+      </div>
+
+      
     </li>
   <% end %>
 </ul>

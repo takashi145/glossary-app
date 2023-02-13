@@ -1,0 +1,28 @@
+<%= form_with model: term do |form| %>
+  <div>
+    <div>
+      <%= form.label :name %><br />
+      <%= form.text_field :name %><br />
+      <% term.errors.full_messages_for(:name).each do |message| %>
+        <div class="text-red-400"><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :description %><br />
+      <%= form.text_field :description %><br />
+      <% term.errors.full_messages_for(:description).each do |message| %>
+        <div class="text-red-400"><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :category_id %><br />
+      <%= form.text_field :category_id %><br />
+    </div>
+
+    <div>
+      <%= form.submit "作成", class:"border p-3 rounded shadow" %>
+    </div>
+  </div>
+<% end %>

@@ -7,5 +7,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  get '/terms/new', to: 'terms#new'
+  post 'terms', to: 'terms#create'
+
   root to: "home#index"
 end
