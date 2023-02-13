@@ -12,9 +12,26 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p> 
-    <p class="alert"><%= alert %></p>
-    <div class="m-8">
+    <div class="navbar relative top-0 bg-base-300 shadow z-50">
+      <div class="flex-1">
+        <%= link_to "Term List", categories_path, class: "btn btn-ghost normal-case text-xl" %>
+      </div>
+      <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Item 1</a></li>
+          <li>
+            <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <% if notice || alert %>
+      <p class="notice"><%= notice %></p> 
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <div class="">
       <%= yield %>
     </div>
   </body>
