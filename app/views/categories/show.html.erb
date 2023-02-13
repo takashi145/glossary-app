@@ -1,10 +1,39 @@
-<h1 class="text-3xl"><%= @category.name %></h1>
-
-<ul class="m-3">
-  <% @category.terms.each do |term| %>
-    <li class="border-b">
-      <%= term.name %> <br />
-      <%= term.description %>
-    </li>
-  <% end %>
-</ul>
+<div class="drawer drawer-mobile fixed top-0 left-0 z-20">
+  <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <label for="my-drawer-2" class="btn drawer-button lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </label>
+    
+    <ul class="mx-auto px-8 w-full lg:w-2/3 mt-12">
+      <h1 class="text-3xl"><%= @category.name %></h1>
+      <% @category.terms.each do |term| %>
+        <li class="my-6">
+          <div class="collapse">
+            <input type="checkbox" class="w-full" />
+            <div class="collapse-title text-xl font-medium border-b">
+              <%= term.name %>
+            </div>
+            <div class="collapse-content bg-gray-800">
+              <p class="p-3"><%= term.description %></p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="drawer-side shadow-lg">
+    <label for="my-drawer-2" class="drawer-overlay"></label> 
+    <ul class="menu p-4 w-80 bg-base-200 text-base-content">
+      <h3 class="text-xl pb-3 mb-3 border-b">Categories</h3>
+      <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.name, category_path(category.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
