@@ -1,0 +1,16 @@
+<%= form_with model: category do |form| %>
+  <div>
+    <div><%= form.label :name %></div>
+    <div>
+      <%= form.text_field :name %>
+    </div>
+
+    <% category.errors.full_messages_for(:name).each do |message| %>
+      <div class="text-red-400"><%= message %></div>
+    <% end %>
+
+    <div>
+      <%= form.submit "作成", class:"border p-3 rounded shadow" %>
+    </div>
+  </div>
+<% end %>
