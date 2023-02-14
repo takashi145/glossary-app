@@ -1,12 +1,13 @@
 class CategoriesController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
     @category = Category.find(params[:id])
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def new
@@ -14,7 +15,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(category_param)
+    @category = Category.create(
+      category_param.merge(user_id: current_user.id)
+    )
     if @category.save
       redirect_to categories_path
     else

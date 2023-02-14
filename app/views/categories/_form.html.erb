@@ -1,16 +1,18 @@
 <%= form_with model: category do |form| %>
-  <div>
-    <div><%= form.label :name %></div>
-    <div>
-      <%= form.text_field :name %>
-    </div>
-
-    <% category.errors.full_messages_for(:name).each do |message| %>
-      <div class="text-red-400"><%= message %></div>
-    <% end %>
-
-    <div>
-      <%= form.submit "作成", class:"border p-3 rounded shadow" %>
+  <div class="text-gray-400 body-font relative">
+    <div class="container px-5 pt-8 mx-auto">
+      <div class="mx-auto lg:w-3/5 md:w-full bg-gray-900 shadow-md rounded-lg px-8 lg:px-16 py-16 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10">
+        <div class="relative mb-3 field">
+          <%= form.label :name, class: 'leading-7 text-sm text-gray-400' %>
+          <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+          <% category.errors.full_messages_for(:name).each do |message| %>
+            <div class="text-red-400"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="actions mx-auto mt-6 w-full">
+          <%= form.submit submit_text, class: "w-full cursor-pointer text-white bg-indigo-500 border-0 py-2 px-6 mb-3 focus:outline-none hover:bg-indigo-600 rounded text-lg" %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

@@ -1,12 +1,14 @@
 class TermsController < ApplicationController
+  before_action :authenticate_user!
   
   def index 
     @terms = Term.all
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def new
     @term = Term.new
+    @categories = current_user.categories
   end
 
   def create
@@ -20,14 +22,16 @@ class TermsController < ApplicationController
 
   def edit
     @term = Term.find(params[:id])
+    @categories = current_user.categories
   end
 
   def update
     @term = Term.find(params[:id])
-
+    
     if @term.update(term_param)
       redirect_to category_path(@term.category_id)
     else
+      @categories = current_user.categories
       render :edit, status: :unprocessable_entity
     end
   end
