@@ -26,19 +26,19 @@
 
             <% if params[:order] != "reversal" %>
             <div class="collapse group text-start">
-              <input type="checkbox" class="w-full" />
+              <input type="checkbox" class="w-full h-full" />
               <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
                 <%= term.name %>
               </div>
               <div class="collapse-content bg-gray-800">
-                <p class="p-3"><%= term.description %></p>
+                <p class="p-3"><%= simple_format(term.description) %></p>
               </div>
             </div>
             <% else %>
             <div class="collapse group text-start">
-              <input type="checkbox" class="w-full" />
+              <input type="checkbox" class="w-full h-full" />
               <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
-                <%= term.description %>
+                <%= simple_format(term.description) %>
               </div>
               <div class="collapse-content bg-gray-800">
                 <p class="p-3"><%= term.name %></p>
