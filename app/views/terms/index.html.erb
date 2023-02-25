@@ -10,12 +10,12 @@
     <ul class="mx-auto px-8 w-full lg:w-2/3 mt-12 pb-32">
 
       <div class="p-3 flex items-center justify-between border-b bg-gray-700 rounded">
-        <h1 class="text-xl">すべての用語</h1>
+        <h1 class="text-lg text-gray-200">すべての用語</h1>
 
         <% if params[:order] != "reversal" %>
-          <%= link_to "用語名 -> 用語説明", terms_path(:order => "reversal") , class: "btn " %>
+          <%= link_to "用語名 -> 用語説明", terms_path(:order => "reversal") , class: "btn btn-primary " %>
         <% else %>
-          <%= link_to "用語説明 -> 用語名", terms_path , class: "btn" %>
+          <%= link_to "用語説明 -> 用語名", terms_path , class: "btn btn-primary" %>
         <% end %>
       </div>
 
@@ -37,7 +37,7 @@
                   <%= term.name %>
                 </div>
                 
-                <div class="collapse-content bg-gray-800">
+                <div class="collapse-content dark:bg-gray-800">
                   <p class="p-3"><%= simple_format(term.description) %></p>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                 </div>
                 
                 <div class="collapse-content bg-gray-800">
-                  <p class="p-3"><%= term.name %></p>
+                  <p class="p-3 text-gray-200"><%= term.name %></p>
                 </div>
               </div>
             <% end %>
@@ -108,7 +108,7 @@
   </div>
 </div>
 
-<%= link_to new_term_path, class:"z-50 fixed bottom-6 right-6 bg-indigo-500 hover:bg-indigo-600 p-5 rounded-full focus:ring-4", method: :get do %>
+<%= link_to new_term_path, class:"z-50 fixed bottom-6 right-6 btn-primary p-5 rounded-full focus:ring-4", method: :get do %>
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
   </svg>
