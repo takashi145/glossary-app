@@ -7,23 +7,44 @@
       </svg>
     </label>
     
-    <ul class="mx-auto px-8 w-full lg:w-2/3 mt-8">
-      <h1 class="text-xl">
-        カテゴリー<span class="underline text-2xl mx-1"><%= @category.name %></span>の用語集
-      </h1>
+    <ul class="mx-auto px-8 w-full lg:w-2/3 mt-8 lg:mt-12">
+      <div class="p-3 flex justify-between items-center border-b bg-gray-700 rounded">
+        <h1 class="text-xl">
+          カテゴリー<span class="underline text-2xl mx-1"><%= @category.name %></span>の用語集
+        </h1>
+
+        <% if params[:order] != "reversal" %>
+          <%= link_to "用語名 -> 用語説明", category_path(@category.id, :order => "reversal") , class: "btn " %>
+        <% else %>
+          <%= link_to "用語説明 -> 用語名", category_path(@category.id) , class: "btn" %>
+        <% end %>
+      </div>
+
       <% @category.terms.each do |term| %>
         <li class="my-6">
           <div class="tooltip w-full" data-tip="click">
+
+            <% if params[:order] != "reversal" %>
             <div class="collapse group text-start">
               <input type="checkbox" class="w-full" />
               <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
                 <%= term.name %>
               </div>
-              
               <div class="collapse-content bg-gray-800">
                 <p class="p-3"><%= term.description %></p>
               </div>
             </div>
+            <% else %>
+            <div class="collapse group text-start">
+              <input type="checkbox" class="w-full" />
+              <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
+                <%= term.description %>
+              </div>
+              <div class="collapse-content bg-gray-800">
+                <p class="p-3"><%= term.name %></p>
+              </div>
+            </div>
+            <% end %>
           </div>
           <div class="flex justify-end space-x-3">
             <%= link_to "Edit", edit_term_path(term.id), class: "inline text-blue-400 hover:text-blue-600 hover:underline" %>
