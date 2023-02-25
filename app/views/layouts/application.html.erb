@@ -14,10 +14,11 @@
   <body>
     <!-- navbar -->
     <div class="navbar relative top-0 bg-base-300 shadow z-50">
-      <div class="flex-1">
-        <%= link_to "Term List", categories_path, class: "p-3 font-bold normal-case text-xl" %>
+      <div class="flex-1 max-w-7xl mx-auto">
+        <img src="/logo.png" class="w-12 h-12" />
+        <%= link_to "Grossary App", categories_path, class: "p-3 font-bold normal-case text-md" %>
       </div>
-      <div class="flex-none">
+      <div class="flex-none max-w-7xl mx-auto">
         <ul class="flex items-center space-x-4 px-1">
           <li>
             <%= link_to "カテゴリ集", categories_path, class: "hover:underline #{ "underline cursor-default" if controller_name == 'categories' && action_name == 'index' }" %>
