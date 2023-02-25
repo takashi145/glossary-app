@@ -2,6 +2,9 @@
   <div class="text-gray-400 body-font relative">
     <div class="container px-5 pt-8 mx-auto">
       <div class="mx-auto lg:w-3/5 md:w-full bg-gray-900 shadow-md rounded-lg px-8 lg:px-16 py-16 flex flex-col md:ml-auto w-full my-10 md:mt-0 relative z-10">
+        <%= link_to 'javascript:history.back()', class:"text-blue-400 hover:text-blue-500 mb-3", method: :get do %>
+          ←戻る
+        <% end %>
         <h2 class="mb-4 text-xl">用語更新</h2>
         <div class="relative mb-3 field">
           <%= form.label :name, class: 'leading-7 text-sm text-gray-400' %>

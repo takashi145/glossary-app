@@ -11,14 +11,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="dark">
 
     <% if notice || alert %>
       <p class="notice"><%= notice %></p> 
       <p class="alert"><%= alert %></p>
     <% end %>
 
-    <div class="">
+    <div class="mb-12">
       <%= yield %>
     </div>
   </body>
