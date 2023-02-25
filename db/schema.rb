@@ -25,10 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_045353) do
   create_table "terms", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
+    t.bigint "user_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_terms_on_category_id"
+    t.index ["user_id"], name: "index_terms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +47,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_13_045353) do
 
   add_foreign_key "categories", "users", on_delete: :cascade
   add_foreign_key "terms", "categories", on_delete: :cascade
+  add_foreign_key "terms", "users", on_delete: :cascade
 end

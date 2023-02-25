@@ -1,4 +1,4 @@
-<div class="drawer drawer-mobile relative top-0 left-0 z-20">
+<div class="drawer drawer-mobile fixed top-16 left-0 z-20">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content">
     <label for="my-drawer-2" class="btn drawer-button lg:hidden rounded-none">
@@ -7,7 +7,8 @@
       </svg>
     </label>
     
-    <ul class="mx-auto px-8 w-full lg:w-2/3 mt-12">
+    <ul class="mx-auto px-8 w-full lg:w-2/3 mt-12 pb-32">
+      <h3 class="text-2xl border-b">すべての用語</h3>
       <% @terms.each do |term| %>
         <li class="my-6">
           <div class="tooltip w-full" data-tip="click">
@@ -15,7 +16,11 @@
               <input type="checkbox" class="w-full" />
               <div class="collapse-title group-hover:bg-slate-700 text-xl font-medium border-b ">
                 <div class="text-sm underline mb-1">
+                  <% if term.category %>
                   Category:　<%= term.category.name %>
+                  <% else %>
+                  カテゴリーなし
+                  <% end %>
                 </div>
 
                 <%= term.name %>
@@ -28,12 +33,29 @@
           </div>
           <div class="flex justify-end space-x-3">
             <%= link_to "Edit", edit_term_path(term.id), class: "inline text-blue-400 hover:text-blue-600 hover:underline" %>
-            <%= 
-              button_to "Delete", 
-              term_path(term), 
-              method: :delete, 
-              class: "text-red-400 hover:text-red-600" 
-            %>
+            
+
+            <label for="modal-<%= term.id %>" class="text-red-400 cursor-pointer hover:text-red-500 hover:underline">
+              Delete
+            </label>
+
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="modal-<%= term.id %>" class="modal-toggle" />
+            <div class="modal">
+              <div class="modal-box">
+                <h3 class="font-bold text-lg">用語削除</h3>
+                <p class="py-4">本当に削除しますか？</p>
+                <div class="modal-action">
+                  <%= 
+                    button_to "Delete", 
+                    term_path(term), 
+                    method: :delete, 
+                    class: "btn text-red-400 hover:text-red-600" 
+                  %>
+                  <label for="modal-<%= term.id %>" class="btn">Close</label>
+                </div>
+              </div>
+            </div>
           </div>
         </li>
       <% end %>
@@ -61,3 +83,4 @@
     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
   </svg>
 <% end %>
+

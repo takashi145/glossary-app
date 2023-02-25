@@ -1,9 +1,15 @@
-<h1 class="text-xl m-3">カテゴリ一覧</h1>
-
 <ul class="m-8 max-w-5xl lg:mx-auto">
+  <div class="flex justify-between mb-8 border-b">
+    <h3 class="text-2xl">カテゴリ一覧</h3>
+    <%= link_to new_category_path, class:"text-blue-400 hover:text-blue-500", method: :get do %>
+      +
+      カテゴリーを追加
+    <% end %>
+  </div>
+
   <% @categories.each do |category| %>
-    <li class="border-b p-3">
-      <%= link_to category.name, category_path(category.id), class:"px-3 text-3xl text-gray-400 hover:underline hover:text-gray-300 hover:underline" %>
+    <li class="border-b p-3 mb-3">
+      <%= link_to category.name, category_path(category.id), class:"px-3 text-2xl text-gray-400 hover:underline hover:text-gray-300 hover:underline" %>
 
       <div class="flex justify-end space-x-3">
         <%=
@@ -12,19 +18,28 @@
             class: "text-blue-400 hvoer:text-blue-600"
         %>
 
-        <%= 
-          button_to "Delete", 
-          category_path(category), 
-          method: :delete, 
-          class: "text-red-400 hover:text-red-600" 
-        %>
+        <label for="modal-<%= category.id %>" class="text-red-400 cursor-pointer hover:text-red-500 hover:underline">
+          Delete
+        </label>
+
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="modal-<%= category.id %>" class="modal-toggle" />
+        <div class="modal">
+          <div class="modal-box">
+            <h3 class="font-bold text-lg">カテゴリー削除</h3>
+            <p class="py-4">カテゴリーを削除すると、このカテゴリーに属する用語が全て削除されます。本当に削除しますか？</p>
+            <div class="modal-action">
+              <%= 
+                button_to "Delete", 
+                category_path(category), 
+                method: :delete, 
+                class: "btn text-red-400 hover:text-red-600" 
+              %>
+              <label for="modal-<%= category.id %>" class="btn">Close</label>
+            </div>
+          </div>
+        </div>
       </div>
     </li>
   <% end %>
 </ul>
-
-<%= link_to new_category_path, class:"fixed bottom-6 right-6 bg-indigo-500 hover:bg-indigo-600 p-5 rounded-full focus:ring-4", method: :get do %>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-  </svg>
-<% end %>

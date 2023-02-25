@@ -1,3 +1,38 @@
-<h1>更新</h1>
-
-<%= render "form", { term: @term, categories: @categories, submit_text: "更新" } %>
+<%= form_with model: @term do |form| %>
+  <div class="text-gray-400 body-font relative">
+    <div class="container px-5 pt-8 mx-auto">
+      <div class="mx-auto lg:w-3/5 md:w-full bg-gray-900 shadow-md rounded-lg px-8 lg:px-16 py-16 flex flex-col md:ml-auto w-full my-10 md:mt-0 relative z-10">
+        <h2 class="mb-4 text-xl">用語更新</h2>
+        <div class="relative mb-3 field">
+          <%= form.label :name, class: 'leading-7 text-sm text-gray-400' %>
+          <%= form.text_field :name, autofocus: true, autocomplete: "name", class: "w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+          <% @term.errors.full_messages_for(:name).each do |message| %>
+            <div class="text-red-400"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="relative mb-4 field">
+          <%= form.label :description, class: 'leading-7 text-sm text-gray-400' %>
+          <%= form.text_area :description, autofocus: true, autocomplete: "description", class: "w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out", rows: 8 %>
+          <% @term.errors.full_messages_for(:description).each do |message| %>
+            <div class="text-red-400"><%= message %></div>
+          <% end %>
+        </div>
+        <div class="relative mb-4 field">
+          <%= form.label :category_id %><br />
+          <%= 
+            form.select :category_id,
+            options_from_collection_for_select(@categories, :id, :name, form.object.category_id),
+            {include_blank: 'カテゴリを選択してください'},
+            {class: "select w-full"}
+          %>
+          <% @term.errors.full_messages_for(:category_id).each do |message| %>
+            <div class="text-red-400"><%= message %></div>
+          <% end %>
+        <div>
+        <div class="actions mx-auto mt-12 w-full">
+          <%= form.submit "更新", class: "w-full cursor-pointer text-white bg-indigo-500 border-0 py-2 px-6 mb-3 focus:outline-none hover:bg-indigo-600 rounded text-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
