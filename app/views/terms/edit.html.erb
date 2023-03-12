@@ -1,7 +1,7 @@
 <%= form_with model: @term do |form| %>
   <div class="text-gray-400 body-font relative">
-    <div class="container px-5 pt-8 mx-auto">
-      <div class="mx-auto lg:w-3/5 md:w-full bg-gray-900 shadow-md rounded-lg px-8 lg:px-16 py-16 flex flex-col md:ml-auto w-full my-10 md:mt-0 relative z-10">
+    <div class="container px-5 mx-auto mt-8">
+      <div class="max-w-xl mx-auto lg:w-3/5 md:w-full bg-gray-900 shadow-md rounded-lg px-8 lg:px-8 py-8 flex flex-col md:ml-auto w-full my-10 md:mt-0 relative z-10">
         <%= link_to 'javascript:history.back()', class:"text-blue-400 hover:text-blue-500 mb-3", method: :get do %>
           ←戻る
         <% end %>
@@ -15,7 +15,7 @@
         </div>
         <div class="relative mb-4 field">
           <%= form.label :description, class: 'leading-7 text-sm text-gray-400' %>
-          <%= form.text_area :description, autofocus: true, autocomplete: "description", class: "w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out", rows: 8 %>
+          <%= form.text_area :description, autofocus: true, autocomplete: "description", class: "w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out", rows: 5 %>
           <% @term.errors.full_messages_for(:description).each do |message| %>
             <div class="text-red-400"><%= message %></div>
           <% end %>

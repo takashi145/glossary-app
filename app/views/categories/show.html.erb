@@ -8,7 +8,14 @@
     </label>
     
     <ul class="mx-auto px-4 w-full lg:w-2/3 mt-8 lg:mt-12">
-      <div class="p-3 flex flex-col md:flex-row justify-between items-center border-b bg-gray-700 rounded">
+      <div class="flex justify-end">
+        <%= link_to new_term_path(:category => @category.id), class:"text-blue-400 text-lg hover:text-blue-600 btn btn-link", method: :get do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+          </svg>用語を追加
+        <% end %>
+      </div>
+      <div class="sticky top-0 z-10 p-3 flex flex-col md:flex-row justify-between items-center border-b bg-gray-700 rounded">
         <h1 class="text-lg mb-3 md:mb-0">
           カテゴリー<span class="underline text-2xl mx-1"><%= @category.name %></span>の用語集
         </h1>
@@ -85,9 +92,7 @@
     <label for="my-drawer-2" class="drawer-overlay"></label> 
     <ul class="menu p-4 w-80 bg-base-200 text-base-content">
       <h3 class="text-xl pb-3 mb-3 border-b">Categories</h3>
-      <li>
-        <%= link_to "All", terms_path %>
-      </li>
+      
       <% @categories.each do |category| %>
         <li>
           <%= link_to category.name, category_path(category.id) %>
@@ -97,8 +102,3 @@
   </div>
 </div>
 
-<%= link_to new_term_path(:category => @category.id), class:"z-50 fixed bottom-6 right-6 btn-primary  p-5 rounded-full focus:ring-4", method: :get do %>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-  </svg>
-<% end %>

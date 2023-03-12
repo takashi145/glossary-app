@@ -3,7 +3,7 @@ class TermsController < ApplicationController
   before_action :ensure_user, { only: [:edit, :update, :destroy]}
   
   def index 
-    @terms = current_user.terms
+    @terms = current_user.terms.includes(:category)
     @categories = current_user.categories
   end
 
